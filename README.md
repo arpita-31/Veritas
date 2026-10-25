@@ -5,6 +5,8 @@
 > **Competition Track:** Decentralized Institutional Data and Trust Infrastructure | Full-Stack Blockchain MVP
 
 ---
+<img width="1521" height="695" alt="image" src="https://github.com/user-attachments/assets/3a8dd036-14d5-4968-8a43-c6739c2a7f87" />
+
 
 ## 1. Executive Summary & Problem Statement
 
@@ -200,57 +202,9 @@ Scenario E (Unknown Record): UNKNOWN | PASSED: True
 
 ---
 
-## 8. Step-by-Step Judge Demonstration Script
 
-To evaluate the system during competition judging, follow this guided walkthrough:
 
-### Scenario 1: Issue an Authentic Academic Certificate
-1. Open `http://localhost:5173`.
-2. Login or switch persona to **VCET Mumbai — Authorized Academic Registrar** (`vcet_issuer`).
-3. Click **Issue Credential** in the sidebar.
-4. Keep the default student record (*Aarav Sharma*, *Bachelor of Engineering in Computer Engineering*, *First Class with Distinction*).
-5. Notice the **Canonical JSON Preview** in the right column showing deterministic key sorting.
-6. Click **Sign & Commit to Institutional Trust Registry**.
-7. Observe real EIP-191 signing, transaction confirmation, and block number.
-8. View the authentic printable certificate and click **Download JSON**.
-
-### Scenario 2: Verify the Authentic Certificate
-1. Navigate to **Verification Center** (`/verify`).
-2. Click **Quick Samples: Genuine Record** (or drag the downloaded JSON).
-3. Click **Verify Credential Authenticity**.
-4. Result: **VERIFIED** (Green).
-5. Expand the **7-point inspection checklist** verifying payload integrity, recovered signer address (`0x3C44...`), issuer authorization on the blockchain, and active status.
-
-### Scenario 3: Demonstrate Tampering Detection
-1. In the **Verification Center**, click **Quick Samples: Tampered Grade**.
-2. Notice the JSON payload has been altered: `grade: "Grade A+ (Tampered Mark)"` while keeping the original signature.
-3. Click **Verify Credential Authenticity**.
-4. Result: **TAMPERED** (Red).
-5. The system clearly explains: *"Payload was modified! Recomputed hash does not match proof record hash."*
-
-### Scenario 4: Demonstrate Smart Contract Revocation
-1. Navigate to **Revocation Manager** (`/revocation`) as `vcet_issuer` or `vcet_admin`.
-2. Select the credential and click **Revoke Credential**.
-3. Select official reason code: `ACADEMIC_MISCONDUCT`.
-4. Click **Execute Revocation**. The smart contract updates state on-chain.
-5. Return to the **Verification Center** and re-verify that same credential.
-6. Result: **REVOKED** (Purple).
-
-### Scenario 5: Judges Trust Lab Execution
-1. Navigate to **Trust Lab (Judges)** (`/trust-lab`).
-2. Run each adversarial scenario in succession (**Scenario A**, **Scenario B**, **Scenario C**, **Scenario D**, **Scenario E**).
-3. Observe live contract revert reasons, pass/fail badges, and technical cryptographic evidence.
-
-### Scenario 6: Batch Verification
-1. Navigate to **Batch Verification** (`/batch-verify`).
-2. Click **Load Sample Batch (3 Records)**.
-3. Click **Execute Batch Verification**.
-4. Observe the parallel processing breakdown: *1 Verified, 1 Tampered, 1 Revoked*.
-5. Click **Export CSV Report** to download the audit log spreadsheet.
-
----
-
-## 9. Feature Checklist & Implementation Status
+## 8. Feature Checklist & Implementation Status
 
 - [x] **Smart Contract (`InstitutionalTrustRegistry.sol`):** Real Solidity contract with custom errors, events, and existence flags.
 - [x] **Automated Contract Tests:** 14 Hardhat tests covering registration, cross-institution rejection, duplicate issuance, and revocation.
